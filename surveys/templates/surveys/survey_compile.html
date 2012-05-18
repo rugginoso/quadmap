@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post">
+    <h3>{{ survey.title }}</h3>
+    <label for="anagraphics">Select your anagraphics</label>
+    <select name="anagraphics" id="anagraphics_id">
+        <option value="0">----</option>
+        {% for anagraphic in anagraphics %}
+            <option value="{{ anagraphic.id }}">{{ anagraphic.name }}</option>
+        {% endfor %}
+    </select>
+    {% for question in survey.question_set.all %}
+        <p>{{ question.text }}</p>
+        <ul>
+            {% for choice in question.choice_set.all %}
+                {% if choice.type == 'C' %}
+                    <li><input value="{{ choice.id }}" name="question_{{ question.id }}" type="radio"/> {{ choice.text }}</li>
+                {% else %}
+                    <li><input value="{{ choice.id }}" name="question_{{ question.id }}" type="radio"/> {{ choice.text }}:<br /><textarea name="choice_text_{{ choice.id }}"></textarea></li>
+                {% endif%}
+            {% endfor %}
+        </ul>
+    <hr />
+    {% endfor %}
+    {% csrf_token %}
+    <input type="submit" value="Save"/>
+    <a href="{% url index %}">Index</a>
+</form>
+{% endblock %}

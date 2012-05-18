@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table>
+{% for answer in answers %}
+	<tr>
+		<td>{% if answer.question.survey.type == 'O' %}{{ answer.anagraphics.operator }}{% else %}{{ answer.anagraphics.area }}{% endif %}</td>
+		<td>{{ answer.question.text }}</td>
+		{% if answer.choice.type == 'C' %}
+			<td>{{ answer.choice.text }}</td>
+		{% else %}
+			<td>{{ answer.open_choice_text }}</td>
+		{% endif %}
+	</tr>
+{% endfor %}
+</table>
+<a class="action" href="{% url index %}">Index</a>
+{% endblock %}

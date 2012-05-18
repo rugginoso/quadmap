@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Survey</h2>
+<form method="POST">
+	Are you sure to delete this survey?
+	<input type="submit" value="yes" />
+	<input type="button" value="no" onclick="javascript:history.back()" />
+	{% csrf_token %}
+</form>
+{% endblock %}

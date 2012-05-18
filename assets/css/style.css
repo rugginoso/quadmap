@@ -1,0 +1,48 @@
+@import url("reset.css");
+/*@import url("global-forms.css");*/
+
+body {
+	background-color: #eee;
+	font-size: 87.5%; /* Base font size: 14px */
+	font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    line-height: 1.429;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+/* Headings */
+h2 {font-size: 1.571em} /* 22px */
+h3 {font-size: 1.429em} /* 20px */
+h4 {font-size: 1.286em} /* 18px */
+h5 {font-size: 1.143em} /* 16px */
+h6 {font-size: 1em}             /* 14px */
+
+h2, h3, h4, h5, h6 {
+        font-weight: 400;
+        line-height: 1.1;
+        margin-bottom: .8em;
+}
+
+table
+{
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+tr:hover {
+	background-color: #eee;
+}
+
+#content {
+	background-color: white;
+	width: 600px;
+	margin: auto;
+	padding: 10px 10px 10px 10px;
+	border-radius: 10px;
+}
+
+.action {
+	display: block;
+	text-align: right;
+}

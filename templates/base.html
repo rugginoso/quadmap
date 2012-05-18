@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    {% get_static_prefix as STATIC_PREFIX %}
+	<link rel="stylesheet" href="{{ STATIC_PREFIX }}css/style.css" />
+    {% block extrastyle %}{% endblock %}
+    {% block extrajs %}{% endblock %}
+	<title>Quadmap - {{ title }}</title>
+</head>
+<body>
+	<div id="content">
+		<h2>{{ title }}</h2>
+		{% block content %}{% endblock %}
+	</div>
+</body>
+</html>
