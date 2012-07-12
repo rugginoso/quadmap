@@ -70,7 +70,9 @@ STATIC_URL = 'http://enquette.quadmap.eu/'
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
-#ADMIN_MEDIA_PREFIX = '/static/admin/'
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'grappelli/'
+
+GRAPPELLI_ADMIN_TITLE = "Quadmap"
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -100,10 +102,10 @@ TEMPLATE_LOADERS = (
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
-    #'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    #'django.contrib.auth.middleware.AuthenticationMiddleware',
-    #'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 ROOT_URLCONF = 'quadmap.urls'
@@ -117,14 +119,15 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    #'django.contrib.auth',
+    'django.contrib.auth',
     'django.contrib.contenttypes',
-    #'django.contrib.sessions',
+    'django.contrib.sessions',
     #'django.contrib.sites',
-    #'django.contrib.messages',
+    'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
-    #'django.contrib.admin',
+    'grappelli',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'quadmap.surveys',
@@ -158,4 +161,3 @@ try:
     from local_settings import *
 except:
     pass
-

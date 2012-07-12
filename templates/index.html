@@ -1,47 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Index</h2>
-<table>
-	{% for area in areas %}
-	<tr>
-		<td>{{ area }}</td>
-		<td><a class="action" href="{% url edit_area area.id %}">Edit</a></td>
-		<td><a class="action" href="{% url delete_area area.id %}">Delete</a></td>
-	</tr>
-	{% empty %}
-	<div>
-		<tr><td><i>No areas yet.</i></td></td>
-	</div>
-	{% endfor %}
-</table>
-<a class="action" href="{% url add_area %}">Add new area</a>
-<hr />
-
-<table>
-	{% for operator in operators %}
-	<tr>
-		<td>{{ operator }}</td>
-		<td><a class="action" href="{% url edit_operator operator.id %}">Edit</a></td>
-		<td><a class="action" href="{% url delete_operator operator.id %}">Delete</a></td>
-	</tr>
-	{% empty %}
-	<div>
-		<tr><td><i>No operators yet.</i></td></td>
-	</div>
-	{% endfor %}
-</table>
-<a class="action" href="{% url add_operator %}">Add new operator</a>
-<hr />
-
 <table>
 	{% for survey in surveys %}
 	<tr>
 		<td>{{ survey }}</td>
 		<td><a class="action" href="{% url compile_survey survey.id %}">Compile</a></td>
 		<td><a class="action" href="{% url report survey.id %}">Report</a></td>
-		<td><a class="action" href="{% url edit_survey survey.id %}">Edit</a></td>
-		<td><a class="action" href="{% url delete_survey survey.id %}">Delete</a></td>
 	</tr>
 	{% empty %}
 	<div>
@@ -49,5 +14,5 @@
 	</div>
 	{% endfor %}
 </table>
-<a class="action" href="{% url new_survey %}">Add new survey</a>
+<a class="action" href="/admin/">Admin</a>
 {% endblock %}

@@ -5,60 +5,6 @@ from django.core.urlresolvers import reverse
 from surveys import models
 from surveys import forms
 
-def survey_index(request):
-	surveys = models.Survey.objects.all()
-
-	return render_to_response('surveys/survey_list.html', {'title': 'Surveys index',
-													'surveys': surveys})
-
-def survey_new(request):
-	if request.method == 'POST':
-		survey_form = forms.SurveyForm(request.POST)
-		if survey_form.is_valid():
-			survey = survey_form.save(commit=False)
-			question_formset = forms.QuestionFormSet(request.POST, instance=survey)
-			if question_formset.is_valid():
-				survey.save()
-				question_formset.save_all()
-				return HttpResponseRedirect(reverse(survey_edit, args=(survey.id,)))
-	else:
-		survey_form = forms.SurveyForm()
-		question_formset = forms.QuestionFormSet()
-
-	return render_to_response('surveys/survey_edit.html',
-							 {'title': 'New survey',
-							  'survey_form': survey_form,
-							  'question_formset': question_formset},
-							  context_instance=RequestContext(request))
-
-
-def survey_edit(request, survey_id):
-	survey = get_object_or_404(models.Survey, id=survey_id)
-
-	if request.method == 'POST':
-		survey_form = forms.SurveyForm(request.POST, instance=survey)
-		if survey_form.is_valid():
-			survey = survey_form.save(commit=False)
-			question_formset = forms.QuestionFormSet(request.POST, instance=survey)
-			if question_formset.is_valid():
-				survey.save()
-				question_formset.save_all()
-
-	survey_form = forms.SurveyForm(instance=survey)
-	question_formset = forms.QuestionFormSet(instance=survey)
-
-	return render_to_response('surveys/survey_edit.html',
-							 {'title': 'Edit survey',
-							  'survey_form': survey_form,
-							  'question_formset': question_formset},
-							  context_instance=RequestContext(request))
-
-def survey_delete(request, survey_id):
-	survey = get_object_or_404(models.Survey, id=survey_id)
-	survey.delete()
-
-	return HttpResponseRedirect(reverse('index'))
-
 def survey_compile(request, survey_id):
 	survey = get_object_or_404(models.Survey, id=survey_id)
 
@@ -90,7 +36,7 @@ def survey_compile(request, survey_id):
 						  choice=choice,
 						  open_choice_text=choice_text).save()
 
-		return HttpResponseRedirect(reverse(survey_index))
+		return HttpResponseRedirect("/")
 
 	return render_to_response('surveys/survey_compile.html',
 							  {'title': 'Compile survey',

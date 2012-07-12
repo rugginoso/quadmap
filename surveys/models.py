@@ -50,6 +50,10 @@ class Survey(models.Model):
 class Question(models.Model):
 	survey = models.ForeignKey(Survey)
 	text = models.TextField()
+	order = models.PositiveIntegerField(default=0)
+
+	class Meta:
+		ordering = ['order']
 
 	def __unicode__(self):
 		return "%s: %s" % (self.survey.title, self.text)
@@ -66,6 +70,10 @@ class Choice(models.Model):
 	question = models.ForeignKey(Question)
 	text = models.CharField(max_length=255)
 	type = models.CharField(max_length=1, choices=CHOICE_TYPES)
+	order = models.PositiveIntegerField(default=0)
+
+	class Meta:
+		ordering = ['order']
 
 	def __unicode__(self):
 		return self.text
