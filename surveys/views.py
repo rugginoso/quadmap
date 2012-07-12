@@ -10,9 +10,9 @@ def survey_compile(request, survey_id):
 
 	anagraphics = []
 	if survey.type == 'O':
-		anagraphics = models.Operator.objects.all()
+		anagraphics = sorted(models.Operator.objects.all(), key=str)
 	else:
-		anagraphics = models.Area.objects.all()
+		anagraphics = sorted(models.Area.objects.all(), key=str)
 
 	if request.method == 'POST':
 		anagraphic = get_object_or_404(models.Anagraphics, id=int(request.POST.get('anagraphics', 0)))

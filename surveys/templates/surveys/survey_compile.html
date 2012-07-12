@@ -7,7 +7,7 @@
     <select name="anagraphics" id="anagraphics_id">
         <option value="0">----</option>
         {% for anagraphic in anagraphics %}
-            <option value="{{ anagraphic.id }}">{{ anagraphic.name }}</option>
+            <option value="{{ anagraphic.id }}">{{ anagraphic }}</option>
         {% endfor %}
     </select>
     {% for question in survey.question_set.all %}

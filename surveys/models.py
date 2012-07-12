@@ -14,9 +14,8 @@ class Operator(Anagraphics):
 	postal_address = models.CharField(max_length=255)
 	email = models.EmailField()
 
-
 	def __unicode__(self):
-		return "%s (%s - %s, %s)" % (self.name, self.organization, self.department, self.country)
+		return "%s - %s: %s" % (self.country, self.organization, self.name)
 
 	@models.permalink
 	def get_absolute_url(self):
@@ -28,7 +27,7 @@ class Area(Anagraphics):
 	# numeric values
 
 	def __unicode__(self):
-		return "%s (%s)" % (self.name, self.country)
+		return "%s - %s" % (self.country, self.name)
 
 	@models.permalink
 	def get_absolute_url(self):
