@@ -3,7 +3,6 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from surveys import models
-from surveys import forms
 
 def survey_compile(request, survey_id):
 	survey = get_object_or_404(models.Survey, id=survey_id)
