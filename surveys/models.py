@@ -5,6 +5,9 @@ class Anagraphics(models.Model):
 	name = models.CharField(max_length=255)
 	country = CountryField()
 
+	class Meta:
+		verbose_name = "registry"
+		verbose_name_plural = "registries"
 
 class Operator(Anagraphics):
 	organization = models.CharField(max_length=255)
