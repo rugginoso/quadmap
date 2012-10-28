@@ -14,6 +14,9 @@ class Operator(Anagraphics):
 	postal_address = models.CharField(max_length=255)
 	email = models.EmailField()
 
+	class Meta:
+		verbose_name = "Stakeholder"
+
 	def __unicode__(self):
 		return "%s - %s: %s" % (self.country, self.organization, self.name)
 
@@ -35,7 +38,7 @@ class Area(Anagraphics):
 
 class Survey(models.Model):
 	SURVEY_TYPES = (
-		('O', 'operator'),
+		('O', 'stakeholder'),
 		('R', 'remote'),
 		('L', 'local'),
 	)
