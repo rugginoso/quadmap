@@ -40,4 +40,5 @@ urlpatterns = patterns('',
 
     url(r'^surveys/compile/(\d+)/$', 'quadmap.surveys.views.survey_compile', name='compile_survey'),
     url(r'^surveys/report/(\d+)/$', 'quadmap.surveys.views.survey_report', name='report'),
+    url(r'^surveys/csv-export/$', 'quadmap.surveys.views.csv_export', name='csv_export'),
 )
