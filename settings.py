@@ -46,7 +46,7 @@ MEDIA_ROOT = ''
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = ''
 
-GRAPPELLI_ADMIN_TITLE = "Quadmap"
+GRAPPELLI_ADMIN_TITLE = '<a href="/">Quadmap</a>'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
