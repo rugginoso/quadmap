@@ -35,7 +35,7 @@ def survey_compile(request, survey_id):
 						  choice=choice,
 						  open_choice_text=choice_text).save()
 
-		return HttpResponseRedirect("/")
+		return HttpResponseRedirect(reverse('index'))
 
 	return render_to_response('surveys/survey_compile.html',
 							  {'title': 'Compile survey',
