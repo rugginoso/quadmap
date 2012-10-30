@@ -48,11 +48,11 @@ def survey_report(request):
 	title = 'Report'
 	if request.method == 'POST':
 		byname_form = ReportByNameForm(request.POST)
-		if byname_form.is_valid():
+		if byname_form.is_valid() and byname_form.cleaned_data['name']:
 			anagraphics = models.Anagraphics.objects.filter(name__icontains=byname_form.cleaned_data['name'])
 
 		byquestion_form = ReportByQuestionForm(request.POST)
-		if byquestion_form.is_valid():
+		if byquestion_form.is_valid() and byquestion_form.cleaned_data['text']:
 			questions = models.Question.objects.filter(text__icontains=byquestion_form.cleaned_data['text'])
 	else:
 		byname_form = ReportByNameForm()

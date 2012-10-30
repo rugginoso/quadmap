@@ -14,7 +14,7 @@
 		{% for answer in anagraphic.answer_set.all %}
 			<tr>
 				<td>{{ answer.question.text }}</td>
-				<td>{% if answer.choice.type == 'C' %} {{ answer.choice.text }} {% else %} {{answer.open_choice_text }} {% endif %}</td>
+				<td>{% if answer.choice.type == 'C' %} {{ answer.choice.text }} {% else %} {{ answer.open_choice_text }} {% endif %}</td>
 			</tr>
 		{% endfor %}
 	</table>
@@ -30,10 +30,10 @@
 {% for question in questions %}
 	<h4>{{ question.text }}</h4>
 	<table>
-		{% for answer in question_set.all %}
+		{% for answer in question.answer_set.all %}
 		<tr>
-			<td>{{ answer.anagraphics.name }} - {{ answer.anagraphics.name }}</td>
-			<td>{% if answer.choice.type == 'C' %} {{ answer.choice.text }} {% else %} {{answer.open_choice_text }} {% endif %}</td>
+			<td>{{ answer.anagraphics.name }} - {{ answer.anagraphics.country }}</td>
+			<td>{% if answer.choice.type == 'C' %} {{ answer.choice.text }} {% else %} {{ answer.open_choice_text }} {% endif %}</td>
 		<tr>
 		{% endfor %}
 	</table>
