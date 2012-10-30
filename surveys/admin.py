@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
 
-from quadmap.surveys.models import *
+from surveys.models import *
 
 
 def add_link_field(target_model = None, field = '', link_text = unicode):

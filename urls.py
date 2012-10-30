@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from quadmap.surveys.models import Survey, Area, Operator
+from surveys.models import Survey, Area, Operator
 
 # http://djangosnippets.org/snippets/499/
 from django.core import urlresolvers
@@ -27,8 +27,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'quadmap.views.home', name='home'),
-    # url(r'^quadmap/', include('quadmap.foo.urls')),
+    # url(r'^$', 'views.home', name='home'),
+    # url(r'^quadmap/', include('foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
@@ -36,7 +36,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
-    url(r'^$', 'quadmap.views.index', name="index"),
+    url(r'^$', 'views.index', name="index"),
 
     url(r'^surveys/compile/(\d+)/$', 'surveys.views.survey_compile', name='compile_survey'),
     url(r'^surveys/report/$', 'surveys.views.survey_report', name='report'),

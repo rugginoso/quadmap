@@ -258,4 +258,4 @@ class CountryField(models.CharField):
         return "CharField"
 
 from south.modelsinspector import add_introspection_rules
-add_introspection_rules([], ["^quadmap\.surveys\.fields\.CountryField"])
+add_introspection_rules([], ["^surveys\.fields\.CountryField"])

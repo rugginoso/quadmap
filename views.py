@@ -1,5 +1,5 @@
 from django.shortcuts import render_to_response
-from quadmap.surveys.models import Survey, Operator, Area
+from surveys.models import Survey, Operator, Area
 
 def index(request):
 	title = 'Index'

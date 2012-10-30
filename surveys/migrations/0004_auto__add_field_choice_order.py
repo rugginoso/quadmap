@@ -22,7 +22,7 @@ class Migration(SchemaMigration):
     models = {
         'surveys.anagraphics': {
             'Meta': {'object_name': 'Anagraphics'},
-            'country': ('quadmap.surveys.fields.CountryField', [], {'max_length': '3'}),
+            'country': ('surveys.fields.CountryField', [], {'max_length': '3'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '255'})
         },
