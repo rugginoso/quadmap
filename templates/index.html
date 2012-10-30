@@ -6,7 +6,6 @@
 	<tr>
 		<td>{{ survey }}</td>
 		<td><a class="action" href="{% url compile_survey survey.id %}">Compile</a></td>
-		<td><a class="action" href="{% url report survey.id %}">Report</a></td>
 	</tr>
 	{% empty %}
 	<div>
@@ -15,5 +14,6 @@
 	{% endfor %}
 </table>
 <a class="action" href="{% url admin:index %}">Admin</a>
+<a class="action" href="{% url report %}">Report</a>
 <a class="action" href="{% url csv_export %}">Download all in CSV</a>
 {% endblock %}

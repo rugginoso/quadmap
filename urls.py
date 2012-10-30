@@ -38,7 +38,7 @@ urlpatterns = patterns('',
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^$', 'quadmap.views.index', name="index"),
 
-    url(r'^surveys/compile/(\d+)/$', 'quadmap.surveys.views.survey_compile', name='compile_survey'),
-    url(r'^surveys/report/(\d+)/$', 'quadmap.surveys.views.survey_report', name='report'),
-    url(r'^surveys/csv-export/$', 'quadmap.surveys.views.csv_export', name='csv_export'),
+    url(r'^surveys/compile/(\d+)/$', 'surveys.views.survey_compile', name='compile_survey'),
+    url(r'^surveys/report/$', 'surveys.views.survey_report', name='report'),
+    url(r'^surveys/csv-export/$', 'surveys.views.csv_export', name='csv_export'),
 )

@@ -1,17 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h3>Search by name</h3>
+<form action={% url report %} method="post">
+	{% csrf_token %}
+	{{ byname_form.as_p }}
+	<input type="submit" value="Submit" />
+</form>
 <table>
-{% for answer in answers %}
-	<tr>
-		<td>{% if answer.question.survey.type == 'O' %}{{ answer.anagraphics.operator }}{% else %}{{ answer.anagraphics.area }}{% endif %}</td>
-		<td>{{ answer.question.text }}</td>
-		{% if answer.choice.type == 'C' %}
-			<td>{{ answer.choice.text }}</td>
-		{% else %}
-			<td>{{ answer.open_choice_text }}</td>
-		{% endif %}
-	</tr>
+{% for anagraphic in anagraphics %}
+	<h4>{{ anagraphic.name }} - {{ anagraphic.country }}</h4>
+	<table>
+		{% for answer in anagraphic.answer_set.all %}
+			<tr>
+				<td>{{ answer.question.text }}</td>
+				<td>{% if answer.choice.type == 'C' %} {{ answer.choice.text }} {% else %} {{answer.open_choice_text }} {% endif %}</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endfor %}
+</table>
+<hr />
+<h3>Search by question</h3>
+<form action={% url report %} method="post">
+	{% csrf_token %}
+	{{ byquestion_form.as_p }}
+	<input type="submit" value="Submit" />
+</form>
+{% for question in questions %}
+	<h4>{{ question.text }}</h4>
+	<table>
+		{% for answer in question_set.all %}
+		<tr>
+			<td>{{ answer.anagraphics.name }} - {{ answer.anagraphics.name }}</td>
+			<td>{% if answer.choice.type == 'C' %} {{ answer.choice.text }} {% else %} {{answer.open_choice_text }} {% endif %}</td>
+		<tr>
+		{% endfor %}
+	</table>
 {% endfor %}
 </table>
 <a class="action" href="{% url index %}">Index</a>

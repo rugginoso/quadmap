@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from surveys import models
+from surveys.forms import ReportByNameForm, ReportByQuestionForm
 
 def survey_compile(request, survey_id):
 	survey = get_object_or_404(models.Survey, id=survey_id)
@@ -43,14 +44,22 @@ def survey_compile(request, survey_id):
 							   'anagraphics': anagraphics},
 							   context_instance=RequestContext(request))
 
-def survey_report(request, survey_id):
-	survey = get_object_or_404(models.Survey, id=survey_id)
+def survey_report(request):
+	title = 'Report'
+	if request.method == 'POST':
+		byname_form = ReportByNameForm(request.POST)
+		if byname_form.is_valid():
+			anagraphics = models.Anagraphics.objects.filter(name__icontains=byname_form.cleaned_data['name'])
 
-	answers = models.Answer.objects.filter(question__survey=survey)
+		byquestion_form = ReportByQuestionForm(request.POST)
+		if byquestion_form.is_valid():
+			questions = models.Question.objects.filter(text__icontains=byquestion_form.cleaned_data['text'])
+	else:
+		byname_form = ReportByNameForm()
+		byquestion_form = ReportByQuestionForm()
 
 	return render_to_response('surveys/survey_report.html',
-							  {'title': 'Survey report',
-							   'answers': answers})
+							  locals(), context_instance=RequestContext(request))
 
 def csv_export(request):
 	HIDDEN_FIELDS = (
